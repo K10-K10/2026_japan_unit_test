@@ -3,16 +3,18 @@
 #define __ROBOT__ARMIO__HPP 1
 #include <Arduino.h>
 
-class ARMIO {
- public:
+class ARMIO
+{
+public:
   ARMIO();
-  ARMIO(const std::int8_t& arm_pulse, const std::int8_t& arm_feedback, const std::int8_t& wire_sig);
-  ARMIO& operator=(const ARMIO&) = default;
+  ARMIO(const std::int8_t &arm_pulse, const std::int8_t &arm_feedback, const std::int8_t &wire_sig);
+  ARMIO &operator=(const ARMIO &) = default;
   bool init_pwm();
-  void arm_set_position(const int& position, const bool& enable);
+  void arm_set_position(const int &position, const bool &enable);
   void updatePID();
+  int getCurrentPosition();
 
- private:
+private:
   std::int8_t arm_pulse_pin;
   std::int8_t arm_feedback_pin;
   std::int8_t wire_sig_pin;
@@ -30,7 +32,6 @@ class ARMIO {
   bool initialized_;
 
   // Read current arm position from feedback pin
-  int getCurrentPosition();
 };
 
 #endif
